@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet author="generator" id="1536588035662">
+        <!--CREATE TABLES-->
+        <createTable tableName="User">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="setPasswordCode" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="setPasswordTimestamp" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passwordHash" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="WorkoutPlan">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="userId" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="Workout">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="workoutPlanId" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set1Reps" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set1Weight" type="DECIMAL(20, 4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set2Reps" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set2Weight" type="DECIMAL(20, 4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set3Reps" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set3Weight" type="DECIMAL(20, 4)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <!--ADD FOREIGN KEYS-->
+        <addForeignKeyConstraint baseColumnNames="userId" baseTableName="WorkoutPlan" constraintName="FK_WOR_PLA.U_USE.I_4DB5A2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="User"/>
+        <addForeignKeyConstraint baseColumnNames="workoutPlanId" baseTableName="Workout" constraintName="FK_WOR.WP_WOR_PLA.I_4487F9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="WorkoutPlan"/>
+        <!--ADD UNIQUE CONSTRAINTS-->
+        <addUniqueConstraint columnNames="setPasswordCode" constraintName="UNQ_USE_SPC_93CDAD" tableName="User"/>
+        <addUniqueConstraint columnNames="username" constraintName="UNQ_USE_U_6DC017" tableName="User"/>
+    </changeSet>
+</databaseChangeLog>

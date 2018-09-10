@@ -1,0 +1,66 @@
+GymAssistant project[
+  namespace ninja
+  url ninja.com
+  version 1
+](
+
+  ### SERVER
+  backend server[
+    template java-springboot(tests fabut)
+    developer (olahnikola)
+    security (principal User, role Role, type username,
+      signIn [query User.findByIdWithPerson, response dto( User.id, User.username, User.role)])
+  ](
+
+    #ENUM
+    Role enum(USER, ADMIN)
+
+    #USER
+    User model(
+      #person Person
+      setPasswordCode optional text[unique, sensitive]
+      setPasswordTimestamp datetime
+
+      findByIdWithPerson select from User
+        where User.id == id
+    )
+
+    WorkoutPlan model(
+        user User
+        active boolean
+        workouts list Workout[oneToMany workoutPlan]
+    )
+
+    Workout model(
+        workoutPlan WorkoutPlan
+        date date
+        set1Reps integer
+        set1Weight decimal
+        set2Reps integer
+        set2Weight decimal
+        set3Reps integer
+        set3Weight decimal
+    )
+
+    WorkoutApi api[rest, secured USER](
+        startWorkout create[
+        ]
+
+        workouts read[
+            select from Workout join WorkoutPlan on Workout.workoutPlan where WorkoutPlan.active == true and WorkoutPlan.user.id == userId
+        ]
+
+        updateWorkout update[
+           model Workout
+           request dto(
+                Workout.set1Reps
+                Workout.set1Weight
+                Workout.set2Reps
+                Workout.set2Weight
+                Workout.set3Reps
+                Workout.set3Weight
+           )
+        ]
+    )
+  )
+)

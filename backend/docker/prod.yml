@@ -1,0 +1,37 @@
+version: '2'
+services:
+  backend_db:
+    image: mysql:5.7
+    expose:
+      - "3306"
+    environment:
+      - MYSQL_DATABASE=backend
+      - MYSQL_ROOT_PASSWORD=root
+  backend:
+    image: drytools/maven
+    depends_on:
+      - backend_server
+      - grafana-dashboard
+    working_dir: /home/docker/backend
+    volumes:
+      - ../backend/:/home/docker/backend
+      - ./deploy/:/deploy
+    command: /bin/bash -c "mvn clean package && cp target/*.war /deploy"
+  backend_server:
+    image: drytools/tomcat:8.0
+    ports:
+     - "8080:8080"
+    volumes:
+     - ./deploy:/usr/local/tomcat/webapps/
+    environment:
+    - SPRING_PROFILES_ACTIVE=dev
+    links:
+     - backend_db
+  grafana-dashboard:
+    image: choopooly/grafana-graphite
+    ports:
+     - "9009:80"
+     - "2003"
+     - "8125/udp"
+     - "8126"
+     

@@ -1,0 +1,158 @@
+{
+    "name": "backend",
+    "models": [{
+        "name": "User",
+        "properties": [{
+            "dslType": "long",
+            "name": "id",
+            "wrappers": []
+        }, {
+            "dslType": "text",
+            "name": "setPasswordCode",
+            "wrappers": ["OPTIONAL"],
+            "maxSize": "255"
+        }, {
+            "dslType": "datetime",
+            "name": "setPasswordTimestamp",
+            "wrappers": []
+        }, {
+            "dslType": "enum",
+            "name": "role",
+            "wrappers": []
+        }, {
+            "dslType": "text",
+            "name": "username",
+            "wrappers": [],
+            "minSize": "3",
+            "maxSize": "128"
+        }, {
+            "dslType": "text",
+            "name": "passwordHash",
+            "wrappers": [],
+            "minSize": "6",
+            "maxSize": "128"
+        }],
+        "references": [],
+        "primaryKeys": [{
+            "dslType": "long",
+            "name": "id",
+            "wrappers": []
+        }],
+        "primaryKeySqlName": "PK_USE_I_CF6928",
+        "uniques": [{
+            "properties": [{
+                "dslType": "text",
+                "name": "setPasswordCode",
+                "wrappers": ["OPTIONAL"],
+                "maxSize": "255"
+            }],
+            "sqlName": "UNQ_USE_SPC_93CDAD"
+        }, {
+            "properties": [{
+                "dslType": "text",
+                "name": "username",
+                "wrappers": [],
+                "minSize": "3",
+                "maxSize": "128"
+            }],
+            "sqlName": "UNQ_USE_U_6DC017"
+        }],
+        "indices": []
+    }, {
+        "name": "WorkoutPlan",
+        "properties": [{
+            "dslType": "long",
+            "name": "id",
+            "wrappers": []
+        }, {
+            "dslType": "long",
+            "name": "userId",
+            "wrappers": []
+        }, {
+            "dslType": "boolean",
+            "name": "active",
+            "wrappers": []
+        }],
+        "references": [{
+            "name": "user",
+            "model": "User",
+            "properties": [{
+                "dslType": "long",
+                "name": "userId",
+                "wrappers": []
+            }],
+            "sqlName": "FK_WOR_PLA.U_USE.I_4DB5A2"
+        }],
+        "primaryKeys": [{
+            "dslType": "long",
+            "name": "id",
+            "wrappers": []
+        }],
+        "primaryKeySqlName": "PK_WOR_PLA_I_101E33",
+        "uniques": [],
+        "indices": []
+    }, {
+        "name": "Workout",
+        "properties": [{
+            "dslType": "long",
+            "name": "id",
+            "wrappers": []
+        }, {
+            "dslType": "long",
+            "name": "workoutPlanId",
+            "wrappers": []
+        }, {
+            "dslType": "date",
+            "name": "date",
+            "wrappers": []
+        }, {
+            "dslType": "int",
+            "name": "set1Reps",
+            "wrappers": []
+        }, {
+            "dslType": "decimal",
+            "name": "set1Weight",
+            "wrappers": [],
+            "precision": 20,
+            "scale": 4
+        }, {
+            "dslType": "int",
+            "name": "set2Reps",
+            "wrappers": []
+        }, {
+            "dslType": "decimal",
+            "name": "set2Weight",
+            "wrappers": [],
+            "precision": 20,
+            "scale": 4
+        }, {
+            "dslType": "int",
+            "name": "set3Reps",
+            "wrappers": []
+        }, {
+            "dslType": "decimal",
+            "name": "set3Weight",
+            "wrappers": [],
+            "precision": 20,
+            "scale": 4
+        }],
+        "references": [{
+            "name": "workoutPlan",
+            "model": "WorkoutPlan",
+            "properties": [{
+                "dslType": "long",
+                "name": "workoutPlanId",
+                "wrappers": []
+            }],
+            "sqlName": "FK_WOR.WP_WOR_PLA.I_4487F9"
+        }],
+        "primaryKeys": [{
+            "dslType": "long",
+            "name": "id",
+            "wrappers": []
+        }],
+        "primaryKeySqlName": "PK_WOR_I_7B622A",
+        "uniques": [],
+        "indices": []
+    }]
+}

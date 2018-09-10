@@ -1,0 +1,56 @@
+package ninja.backend.api.dto;
+
+import java.io.Serializable;
+
+import javax.validation.constraints.*;
+
+import eu.execom.fabut.property.PropertyPath;
+
+
+public class WorkoutsRequest implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    public static final PropertyPath<Long> USER_ID = new PropertyPath<>("userId");
+
+    @NotNull
+    private Long userId;
+
+    private WorkoutsRequest() {
+    }
+
+    public WorkoutsRequest(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final WorkoutsRequest other = (WorkoutsRequest) obj;
+        if (this.userId != null && other.userId != null && !this.userId.equals(other.userId))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "WorkoutsRequest[" + "this.userId=" + this.userId + "]";
+    }
+
+}
