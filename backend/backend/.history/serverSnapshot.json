@@ -7,15 +7,6 @@
             "name": "id",
             "wrappers": []
         }, {
-            "dslType": "text",
-            "name": "setPasswordCode",
-            "wrappers": ["OPTIONAL"],
-            "maxSize": "255"
-        }, {
-            "dslType": "datetime",
-            "name": "setPasswordTimestamp",
-            "wrappers": []
-        }, {
             "dslType": "enum",
             "name": "role",
             "wrappers": []
@@ -40,14 +31,6 @@
         }],
         "primaryKeySqlName": "PK_USE_I_CF6928",
         "uniques": [{
-            "properties": [{
-                "dslType": "text",
-                "name": "setPasswordCode",
-                "wrappers": ["OPTIONAL"],
-                "maxSize": "255"
-            }],
-            "sqlName": "UNQ_USE_SPC_93CDAD"
-        }, {
             "properties": [{
                 "dslType": "text",
                 "name": "username",

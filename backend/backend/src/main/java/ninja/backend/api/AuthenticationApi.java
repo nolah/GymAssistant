@@ -1,7 +1,5 @@
 package ninja.backend.api;
 
-import java.time.*;
-
 import javax.inject.Inject;
 
 import org.slf4j.*;
@@ -15,7 +13,6 @@ import java.util.stream.*;
 import ninja.backend.model.enumeration.*;
 
 import ninja.backend.repository.tuple.*;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

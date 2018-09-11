@@ -1,6 +1,5 @@
 package ninja.backend.repository.impl;
 
-import java.time.*;
 import java.util.*;
 
 import org.slf4j.Logger;
@@ -28,27 +27,6 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         log.trace(".findByIdWithPerson(id: {})", id);
         final QUser user = QUser.user;
         return Optional.ofNullable(factory.select(user).from(user).where(user.id.eq(id)).fetchOne());
-    }
-
-    @Override
-    public List<User> findBySetPasswordCode(Optional<String> setPasswordCode) {
-        log.trace(".findBySetPasswordCode(setPasswordCode)");
-        final QUser user = QUser.user;
-        return factory.select(user).from(user).where(setPasswordCode.map(user.setPasswordCode::eq).orElse(null)).fetch();
-    }
-
-    @Override
-    public Optional<User> findBySetPasswordCodeMandatory(String setPasswordCode) {
-        log.trace(".findBySetPasswordCodeMandatory(setPasswordCode)");
-        final QUser user = QUser.user;
-        return Optional.ofNullable(factory.select(user).from(user).where(user.setPasswordCode.eq(setPasswordCode)).fetchOne());
-    }
-
-    @Override
-    public List<User> findBySetPasswordTimestamp(ZonedDateTime setPasswordTimestamp) {
-        log.trace(".findBySetPasswordTimestamp(setPasswordTimestamp: {})", setPasswordTimestamp);
-        final QUser user = QUser.user;
-        return factory.select(user).from(user).where(user.setPasswordTimestamp.eq(setPasswordTimestamp)).fetch();
     }
 
     @Override

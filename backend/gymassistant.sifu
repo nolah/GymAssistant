@@ -17,9 +17,6 @@ GymAssistant project[
 
     #USER
     User model(
-      #person Person
-      setPasswordCode optional text[unique, sensitive]
-      setPasswordTimestamp datetime
 
       findByIdWithPerson select from User
         where User.id == id

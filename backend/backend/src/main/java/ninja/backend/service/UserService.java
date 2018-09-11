@@ -1,7 +1,5 @@
 package ninja.backend.service;
 
-import java.time.*;
-import org.apache.commons.lang3.RandomStringUtils;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -44,8 +42,6 @@ public class UserService {
         log.debug("signUp(dto)", dto);
 
         final User model = new User();
-        model.setSetPasswordCode(Optional.ofNullable(dto.getSetPasswordCode()));
-        model.setSetPasswordTimestamp(dto.getSetPasswordTimestamp());
         model.setUsername(dto.getUsername());
         // model.setPassword(); // TODO set this field manually
         model.setRole(Role.USER);
