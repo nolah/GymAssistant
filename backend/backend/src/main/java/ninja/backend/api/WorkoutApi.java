@@ -12,12 +12,16 @@ import ninja.backend.api.dto.*;
 
 import java.util.*;
 import java.util.stream.*;
+
 import ninja.backend.model.enumeration.*;
+
 import java.math.BigDecimal;
 
 import ninja.backend.repository.tuple.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static java.util.Optional.empty;
 
 
 @Service
@@ -40,12 +44,156 @@ public class WorkoutApi {
 
     public void startWorkoutPlan(StartWorkoutPlanRequest dto, Long principalId) {
         log.debug("startWorkoutPlan {} {}", dto, principalId);
-        //TODO check security constraints
 
         final User principal = userRepository.findOne(principalId);
 
-        //TODO process event
-        throw new UnsupportedOperationException();
+        final List<WorkoutPlan> workoutPlans = workoutPlanRepository.findByUser(principalId);
+        final Optional<WorkoutPlan> activeWorkoutPlan = workoutPlans.stream().filter(WorkoutPlan::getActive).findAny();
+        activeWorkoutPlan.ifPresent(wp -> {
+            wp.setActive(false);
+            workoutPlanRepository.save(wp);
+        });
+
+        final WorkoutPlan newWorkoutPlan = new WorkoutPlan();
+        newWorkoutPlan.setActive(true);
+        newWorkoutPlan.setUser(principal);
+        newWorkoutPlan.setName("Linear progression " + workoutPlans.size() + 1);
+
+        ZonedDateTime monday = ZonedDateTime.now().with(DayOfWeek.MONDAY);
+        ZonedDateTime tuesday = ZonedDateTime.now().with(DayOfWeek.TUESDAY);
+        ZonedDateTime thursday = ZonedDateTime.now().with(DayOfWeek.THURSDAY);
+        ZonedDateTime friday = ZonedDateTime.now().with(DayOfWeek.FRIDAY);
+
+        final double maxSquat = dto.getMaxSquat().doubleValue();
+        final double maxBench = dto.getMaxBench().doubleValue();
+        final double maxDeadlift = dto.getMaxDeadlift().doubleValue();
+        for (int i = 0; i <= 10; i++) {
+            final Workout mondayWorkout = new Workout();
+            mondayWorkout.setName("Squat day, week: " + i + 1);
+            mondayWorkout.setDate(monday);
+
+            final Exercise exercise1 = new Exercise();
+            exercise1.setName("Back squat");
+            exercise1.setGoalReps(5);
+            exercise1.setGoalWeight(BigDecimal.valueOf(maxSquat * 0.75 + (i + 1) * maxSquat * 0.025));
+            exercise1.setSet1Reps(0);
+            exercise1.setSet1Weight(BigDecimal.ZERO);
+            exercise1.setSet2Reps(0);
+            exercise1.setSet2Weight(BigDecimal.ZERO);
+            exercise1.setSet3Reps(0);
+            exercise1.setSet3Weight(BigDecimal.ZERO);
+            mondayWorkout.getExercises().add(exercise1);
+
+            final Exercise exercise2 = new Exercise();
+            exercise2.setName("Front squat");
+            exercise2.setGoalReps(5);
+            exercise2.setGoalWeight(BigDecimal.valueOf(maxSquat * 0.5 + (i + 1) * maxSquat * 0.025));
+            exercise2.setSet1Reps(0);
+            exercise2.setSet1Weight(BigDecimal.ZERO);
+            exercise2.setSet2Reps(0);
+            exercise2.setSet2Weight(BigDecimal.ZERO);
+            exercise2.setSet3Reps(0);
+            exercise2.setSet3Weight(BigDecimal.ZERO);
+            mondayWorkout.getExercises().add(exercise2);
+
+            newWorkoutPlan.getWorkouts().add(mondayWorkout);
+
+            final Workout tuesdayWorkout = new Workout();
+            tuesdayWorkout.setName("Bench day, week: " + i + 1);
+            tuesdayWorkout.setDate(tuesday);
+
+            final Exercise exercise3 = new Exercise();
+            exercise3.setName("Bench press");
+            exercise3.setGoalReps(5);
+            exercise3.setGoalWeight(BigDecimal.valueOf(maxBench * 0.75 + (i + 1) * maxBench * 0.025));
+            exercise3.setSet1Reps(0);
+            exercise3.setSet1Weight(BigDecimal.ZERO);
+            exercise3.setSet2Reps(0);
+            exercise3.setSet2Weight(BigDecimal.ZERO);
+            exercise3.setSet3Reps(0);
+            exercise3.setSet3Weight(BigDecimal.ZERO);
+            tuesdayWorkout.getExercises().add(exercise3);
+
+            final Exercise exercise4 = new Exercise();
+            exercise4.setName("Close grip bench press");
+            exercise4.setGoalReps(5);
+            exercise4.setGoalWeight(BigDecimal.valueOf(maxBench * 0.5 + (i + 1) * maxBench * 0.025));
+            exercise4.setSet1Reps(0);
+            exercise4.setSet1Weight(BigDecimal.ZERO);
+            exercise4.setSet2Reps(0);
+            exercise4.setSet2Weight(BigDecimal.ZERO);
+            exercise4.setSet3Reps(0);
+            exercise4.setSet3Weight(BigDecimal.ZERO);
+            tuesdayWorkout.getExercises().add(exercise4);
+
+            newWorkoutPlan.getWorkouts().add(tuesdayWorkout);
+
+            final Workout thursdayWorkout = new Workout();
+            thursdayWorkout.setName("Deadlift day, week: " + i + 1);
+            thursdayWorkout.setDate(thursday);
+
+            final Exercise exercise5 = new Exercise();
+            exercise5.setName("Deadlift");
+            exercise5.setGoalReps(5);
+            exercise5.setGoalWeight(BigDecimal.valueOf(maxDeadlift * 0.75 + (i + 1) * maxDeadlift * 0.025));
+            exercise5.setSet1Reps(0);
+            exercise5.setSet1Weight(BigDecimal.ZERO);
+            exercise5.setSet2Reps(0);
+            exercise5.setSet2Weight(BigDecimal.ZERO);
+            exercise5.setSet3Reps(0);
+            exercise5.setSet3Weight(BigDecimal.ZERO);
+            thursdayWorkout.getExercises().add(exercise5);
+
+            final Exercise exercise6 = new Exercise();
+            exercise6.setName("Romanian deadlift");
+            exercise6.setGoalReps(5);
+            exercise6.setGoalWeight(BigDecimal.valueOf(maxDeadlift * 0.5 + (i + 1) * maxDeadlift * 0.025));
+            exercise6.setSet1Reps(0);
+            exercise6.setSet1Weight(BigDecimal.ZERO);
+            exercise6.setSet2Reps(0);
+            exercise6.setSet2Weight(BigDecimal.ZERO);
+            exercise6.setSet3Reps(0);
+            exercise6.setSet3Weight(BigDecimal.ZERO);
+            thursdayWorkout.getExercises().add(exercise6);
+
+            newWorkoutPlan.getWorkouts().add(thursdayWorkout);
+
+            final Workout fridayWorkout = new Workout();
+            fridayWorkout.setName("Overhead press day, week: " + i + 1);
+            fridayWorkout.setDate(friday);
+
+            final Exercise exercise7 = new Exercise();
+            exercise7.setName("Overhead press");
+            exercise7.setGoalReps(5);
+            exercise7.setGoalWeight(BigDecimal.valueOf(maxBench * 0.5 + (i + 1) * maxBench * 0.025));
+            exercise7.setSet1Reps(0);
+            exercise7.setSet1Weight(BigDecimal.ZERO);
+            exercise7.setSet2Reps(0);
+            exercise7.setSet2Weight(BigDecimal.ZERO);
+            exercise7.setSet3Reps(0);
+            exercise7.setSet3Weight(BigDecimal.ZERO);
+            fridayWorkout.getExercises().add(exercise7);
+
+            final Exercise exercise8 = new Exercise();
+            exercise8.setName("Dumbbell flies");
+            exercise8.setGoalReps(5);
+            exercise8.setGoalWeight(BigDecimal.valueOf(maxBench * 0.2 + (i + 1) * maxBench * 0.01));
+            exercise8.setSet1Reps(0);
+            exercise8.setSet1Weight(BigDecimal.ZERO);
+            exercise8.setSet2Reps(0);
+            exercise8.setSet2Weight(BigDecimal.ZERO);
+            exercise8.setSet3Reps(0);
+            exercise8.setSet3Weight(BigDecimal.ZERO);
+            fridayWorkout.getExercises().add(exercise8);
+
+            newWorkoutPlan.getWorkouts().add(fridayWorkout);
+
+            monday.plusWeeks(1);
+            tuesday.plusWeeks(1);
+            thursday.plusWeeks(1);
+            friday.plusWeeks(1);
+        }
+
     }
 
     @Transactional(readOnly = true)
@@ -71,23 +219,41 @@ public class WorkoutApi {
         //TODO check security constraints
 
         final User principal = userRepository.findOne(principalId);
+        final List<WorkoutPlan> workoutPlans = workoutPlanRepository.findByUser(principalId);
+        final Optional<WorkoutPlan> activeWorkoutPlan = workoutPlans.stream().filter(WorkoutPlan::getActive).findAny();
 
-        throw new UnsupportedOperationException();
+        final ZonedDateTime now = ZonedDateTime.now();
+        final Optional<Workout> todaysWorkout = activeWorkoutPlan.map(wp -> {
+            return wp.getWorkouts().stream().filter(w -> {
+                return w.getDate().isAfter(now.withHour(0)) && w.getDate().isBefore(now.withHour(23));
+            }).findFirst();
+        }).orElse(empty());
+
+        final Long workoutPlanId = activeWorkoutPlan.map(WorkoutPlan::getId).orElse(null);
+        final String workoutPlanName = activeWorkoutPlan.map(WorkoutPlan::getName).orElse(null);
+
+        final Long workoutId = todaysWorkout.map(Workout::getId).orElse(null);
+        final String workoutName = todaysWorkout.map(Workout::getName).orElse(null);
+        return new QuickInfoResponse(workoutPlanId, workoutPlanName, workoutId, workoutName);
     }
 
     @Transactional(readOnly = true)
     public WorkoutsResponse workouts(WorkoutsRequest dto, Long principalId) {
         log.debug("workouts {} {}", dto, principalId);
-        //TODO check security constraints(id)
 
         final User principal = userRepository.findOne(principalId);
 
-        throw new UnsupportedOperationException();
+        final WorkoutPlan workoutPlan = workoutPlanRepository.findOne(dto.getId());
+
+        return new WorkoutsResponse(workoutPlan.getId(), workoutPlan.getName(), workoutPlan.getActive(), workoutPlan.getWorkouts().stream().map(w -> {
+            return new WorkoutsResponseWorkouts(w.getDate(), w.getName(), w.getExercises().stream().map(e -> {
+                return new WorkoutsResponseWorkoutsExercises(e.getName(), e.getGoalReps(), e.getGoalWeight(), e.getSet1Reps(), e.getSet1Weight(), e.getSet2Reps(), e.getSet2Weight(), e.getSet3Reps(), e.getSet3Weight());
+            }).collect(Collectors.toList()));
+        }).collect(Collectors.toList()));
     }
 
     public void updateWorkout(UpdateWorkoutRequest dto, Long principalId) {
         log.debug("updateWorkout {} {}", dto, principalId);
-        //TODO check security constraints(id)
 
         final User principal = userRepository.findOne(principalId);
 
@@ -100,7 +266,6 @@ public class WorkoutApi {
         model.getExercises().clear();
         model.getExercises().addAll(exercises);
         workoutRepository.save(model);
-        //TODO process event
 
     }
 
