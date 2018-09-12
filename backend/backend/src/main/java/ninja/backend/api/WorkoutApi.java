@@ -270,10 +270,11 @@ public class WorkoutApi {
     }
 
     private WorkoutsResponseWorkouts convertToWorkoutsResponseWorkouts(Workout model) {
+        final Long id = model.getId();
         final ZonedDateTime date = model.getDate();
         final String name = model.getName();
         final List<WorkoutsResponseWorkoutsExercises> exercises = model.getExercises().stream().map(this::convertToWorkoutsResponseWorkoutsExercises).collect(Collectors.toList());
-        return new WorkoutsResponseWorkouts(date, name, exercises);
+        return new WorkoutsResponseWorkouts(id, date, name, exercises);
     }
 
     private WorkoutsResponseWorkoutsExercises convertToWorkoutsResponseWorkoutsExercises(Exercise model) {
