@@ -2,25 +2,24 @@ package ninja.backend.api.dto;
 
 import java.io.Serializable;
 
-import java.util.List;
-import java.util.ArrayList;
-
-import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 import eu.execom.fabut.property.PropertyPath;
 
 
-public class WorkoutsResponse implements Serializable {
+public class WorkoutPlansResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;
     public static final PropertyPath<Long> ID = new PropertyPath<>("id");
+    public static final PropertyPath<Long> USER_ID = new PropertyPath<>("userId");
     public static final PropertyPath<String> NAME = new PropertyPath<>("name");
     public static final PropertyPath<Boolean> ACTIVE = new PropertyPath<>("active");
-    public static final PropertyPath<List<WorkoutsResponseWorkouts>> WORKOUTS = new PropertyPath<>("workouts");
 
     @NotNull
     private Long id;
+
+    @NotNull
+    private Long userId;
 
     @NotNull
     @Size(max = 255)
@@ -29,21 +28,22 @@ public class WorkoutsResponse implements Serializable {
     @NotNull
     private Boolean active;
 
-    @Valid
-    private List<WorkoutsResponseWorkouts> workouts = new ArrayList<>();
-
-    private WorkoutsResponse() {
+    private WorkoutPlansResponse() {
     }
 
-    public WorkoutsResponse(Long id, String name, Boolean active, List<WorkoutsResponseWorkouts> workouts) {
+    public WorkoutPlansResponse(Long id, Long userId, String name, Boolean active) {
         this.id = id;
+        this.userId = userId;
         this.name = name;
         this.active = active;
-        this.workouts = workouts;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public Long getUserId() {
+        return userId;
     }
 
     public String getName() {
@@ -54,10 +54,6 @@ public class WorkoutsResponse implements Serializable {
         return active;
     }
 
-    public List<WorkoutsResponseWorkouts> getWorkouts() {
-        return workouts;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -66,8 +62,10 @@ public class WorkoutsResponse implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        final WorkoutsResponse other = (WorkoutsResponse) obj;
+        final WorkoutPlansResponse other = (WorkoutPlansResponse) obj;
         if (this.id != null && other.id != null && !this.id.equals(other.id))
+            return false;
+        if (this.userId != null && other.userId != null && !this.userId.equals(other.userId))
             return false;
         if (this.name != null && other.name != null && !this.name.equals(other.name))
             return false;
@@ -81,6 +79,7 @@ public class WorkoutsResponse implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
         result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
         result = prime * result + ((this.active == null) ? 0 : this.active.hashCode());
         return result;
@@ -88,7 +87,7 @@ public class WorkoutsResponse implements Serializable {
 
     @Override
     public String toString() {
-        return "WorkoutsResponse[" + "this.id=" + this.id + ", this.name=" + this.name + ", this.active=" + this.active + ", this.workouts=" + this.workouts + "]";
+        return "WorkoutPlansResponse[" + "this.id=" + this.id + ", this.userId=" + this.userId + ", this.name=" + this.name + ", this.active=" + this.active + "]";
     }
 
 }

@@ -52,6 +52,11 @@
             "name": "userId",
             "wrappers": []
         }, {
+            "dslType": "text",
+            "name": "name",
+            "wrappers": [],
+            "maxSize": "255"
+        }, {
             "dslType": "boolean",
             "name": "active",
             "wrappers": []
@@ -89,6 +94,55 @@
             "name": "date",
             "wrappers": []
         }, {
+            "dslType": "text",
+            "name": "name",
+            "wrappers": [],
+            "maxSize": "255"
+        }],
+        "references": [{
+            "name": "workoutPlan",
+            "model": "WorkoutPlan",
+            "properties": [{
+                "dslType": "long",
+                "name": "workoutPlanId",
+                "wrappers": []
+            }],
+            "sqlName": "FK_WOR.WP_WOR_PLA.I_4487F9"
+        }],
+        "primaryKeys": [{
+            "dslType": "long",
+            "name": "id",
+            "wrappers": []
+        }],
+        "primaryKeySqlName": "PK_WOR_I_7B622A",
+        "uniques": [],
+        "indices": []
+    }, {
+        "name": "Exercise",
+        "properties": [{
+            "dslType": "long",
+            "name": "id",
+            "wrappers": []
+        }, {
+            "dslType": "long",
+            "name": "workoutId",
+            "wrappers": []
+        }, {
+            "dslType": "text",
+            "name": "name",
+            "wrappers": [],
+            "maxSize": "255"
+        }, {
+            "dslType": "int",
+            "name": "goalReps",
+            "wrappers": []
+        }, {
+            "dslType": "decimal",
+            "name": "goalWeight",
+            "wrappers": [],
+            "precision": 20,
+            "scale": 4
+        }, {
             "dslType": "int",
             "name": "set1Reps",
             "wrappers": []
@@ -120,21 +174,21 @@
             "scale": 4
         }],
         "references": [{
-            "name": "workoutPlan",
-            "model": "WorkoutPlan",
+            "name": "workout",
+            "model": "Workout",
             "properties": [{
                 "dslType": "long",
-                "name": "workoutPlanId",
+                "name": "workoutId",
                 "wrappers": []
             }],
-            "sqlName": "FK_WOR.WP_WOR_PLA.I_4487F9"
+            "sqlName": "FK_EXE.W_WOR.I_3A6E96"
         }],
         "primaryKeys": [{
             "dslType": "long",
             "name": "id",
             "wrappers": []
         }],
-        "primaryKeySqlName": "PK_WOR_I_7B622A",
+        "primaryKeySqlName": "PK_EXE_I_2410E8",
         "uniques": [],
         "indices": []
     }]

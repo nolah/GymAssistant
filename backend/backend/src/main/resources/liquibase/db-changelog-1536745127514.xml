@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet author="generator" id="1536745127514">
+        <!--DROP COLUMNS-->
+        <dropColumn columnName="set1Reps" tableName="Workout"/>
+        <dropColumn columnName="set1Weight" tableName="Workout"/>
+        <dropColumn columnName="set2Reps" tableName="Workout"/>
+        <dropColumn columnName="set2Weight" tableName="Workout"/>
+        <dropColumn columnName="set3Reps" tableName="Workout"/>
+        <dropColumn columnName="set3Weight" tableName="Workout"/>
+        <!--CREATE TABLES-->
+        <createTable tableName="Exercise">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="workoutId" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="goalReps" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="goalWeight" type="DECIMAL(20, 4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set1Reps" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set1Weight" type="DECIMAL(20, 4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set2Reps" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set2Weight" type="DECIMAL(20, 4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set3Reps" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="set3Weight" type="DECIMAL(20, 4)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <!--ADD COLUMNS-->
+        <addColumn tableName="WorkoutPlan">
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <!--ADD FOREIGN KEYS-->
+        <addForeignKeyConstraint baseColumnNames="workoutId" baseTableName="Exercise" constraintName="FK_EXE.W_WOR.I_3A6E96" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Workout"/>
+    </changeSet>
+</databaseChangeLog>

@@ -13,13 +13,41 @@ import org.springframework.http.HttpStatus;
 public class WorkoutApiTest extends AbstractApiTest {
 
     @Test
-    public void testStartWorkout() throws Exception {
+    public void testStartWorkoutPlan() throws Exception {
 
         // setup
 
         // method
         takeSnapshot();
-        //startWorkout().getData();
+        //startWorkoutPlan().getData();
+        fail("test not implemented");
+
+        // assert
+
+    }
+
+    @Test
+    public void testWorkoutPlans() throws Exception {
+
+        // setup
+
+        // method
+        takeSnapshot();
+        //workoutPlans().getData();
+        fail("test not implemented");
+
+        // assert
+
+    }
+
+    @Test
+    public void testQuickInfo() throws Exception {
+
+        // setup
+
+        // method
+        takeSnapshot();
+        //quickInfo().getData();
         fail("test not implemented");
 
         // assert

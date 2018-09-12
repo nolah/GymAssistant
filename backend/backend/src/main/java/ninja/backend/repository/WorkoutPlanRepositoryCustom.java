@@ -11,6 +11,10 @@ public interface WorkoutPlanRepositoryCustom {
 
     List<WorkoutPlan> findByUser(Long userId);
 
+    List<WorkoutPlan> findByName(String name);
+
     List<WorkoutPlan> findByActive(Boolean active);
+
+    List<WorkoutPlan> workoutPlans(Long userId);
 
 }

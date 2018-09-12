@@ -7,10 +7,12 @@ public class WorkoutWorkoutsTuple {
 
     private final Workout workout;
     private final WorkoutPlan workoutPlan;
+    private final Exercise exercise;
 
-    public WorkoutWorkoutsTuple(Workout workout, WorkoutPlan workoutPlan) {
+    public WorkoutWorkoutsTuple(Workout workout, WorkoutPlan workoutPlan, Exercise exercise) {
         this.workout = workout;
         this.workoutPlan = workoutPlan;
+        this.exercise = exercise;
     }
 
     public Workout getWorkout() {
@@ -19,6 +21,10 @@ public class WorkoutWorkoutsTuple {
 
     public WorkoutPlan getWorkoutPlan() {
         return workoutPlan;
+    }
+
+    public Exercise getExercise() {
+        return exercise;
     }
 
 }

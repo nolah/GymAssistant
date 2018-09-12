@@ -7,23 +7,23 @@ import javax.validation.constraints.*;
 import eu.execom.fabut.property.PropertyPath;
 
 
-public class WorkoutsRequest implements Serializable {
+public class WorkoutPlansRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    public static final PropertyPath<Long> ID = new PropertyPath<>("id");
+    public static final PropertyPath<Long> USER_ID = new PropertyPath<>("userId");
 
     @NotNull
-    private Long id;
+    private Long userId;
 
-    private WorkoutsRequest() {
+    private WorkoutPlansRequest() {
     }
 
-    public WorkoutsRequest(Long id) {
-        this.id = id;
+    public WorkoutPlansRequest(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
     @Override
@@ -34,8 +34,8 @@ public class WorkoutsRequest implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        final WorkoutsRequest other = (WorkoutsRequest) obj;
-        if (this.id != null && other.id != null && !this.id.equals(other.id))
+        final WorkoutPlansRequest other = (WorkoutPlansRequest) obj;
+        if (this.userId != null && other.userId != null && !this.userId.equals(other.userId))
             return false;
         return true;
     }
@@ -44,13 +44,13 @@ public class WorkoutsRequest implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
         return result;
     }
 
     @Override
     public String toString() {
-        return "WorkoutsRequest[" + "this.id=" + this.id + "]";
+        return "WorkoutPlansRequest[" + "this.userId=" + this.userId + "]";
     }
 
 }

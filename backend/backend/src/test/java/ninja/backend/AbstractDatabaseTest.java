@@ -40,6 +40,9 @@ public abstract class AbstractDatabaseTest implements IFabutRepositoryTest {
     @Inject
     protected WorkoutRepository workoutRepository;
 
+    @Inject
+    protected ExerciseRepository exerciseRepository;
+
     @Before
     public void setup() {
         Fabut.beforeTest(this);
@@ -68,9 +71,16 @@ public abstract class AbstractDatabaseTest implements IFabutRepositoryTest {
         complexTypes.add(SignUpRequest.class);
         complexTypes.add(SignInRequest.class);
         complexTypes.add(ChangePasswordRequest.class);
+        complexTypes.add(StartWorkoutPlanRequest.class);
+        complexTypes.add(WorkoutPlansRequest.class);
+        complexTypes.add(WorkoutPlansResponse.class);
+        complexTypes.add(QuickInfoResponse.class);
         complexTypes.add(WorkoutsRequest.class);
         complexTypes.add(WorkoutsResponse.class);
+        complexTypes.add(WorkoutsResponseWorkoutsExercises.class);
+        complexTypes.add(WorkoutsResponseWorkouts.class);
         complexTypes.add(UpdateWorkoutRequest.class);
+        complexTypes.add(UpdateWorkoutRequestExercises.class);
         return complexTypes;
     }
 
@@ -92,6 +102,8 @@ public abstract class AbstractDatabaseTest implements IFabutRepositoryTest {
             return workoutPlanRepository.findAll();
         } else if (clazz == Workout.class) {
             return workoutRepository.findAll();
+        } else if (clazz == Exercise.class) {
+            return exerciseRepository.findAll();
         }
 
         throw new IllegalStateException("No findAll for class: " + clazz.getName());
@@ -105,6 +117,8 @@ public abstract class AbstractDatabaseTest implements IFabutRepositoryTest {
             return workoutPlanRepository.findOne((Long) id);
         } else if (entityClass == Workout.class) {
             return workoutRepository.findOne((Long) id);
+        } else if (entityClass == Exercise.class) {
+            return exerciseRepository.findOne((Long) id);
         }
 
         throw new IllegalStateException("No findById for class: " + entityClass.getName());
@@ -116,6 +130,7 @@ public abstract class AbstractDatabaseTest implements IFabutRepositoryTest {
         entityTypes.add(User.class);
         entityTypes.add(WorkoutPlan.class);
         entityTypes.add(Workout.class);
+        entityTypes.add(Exercise.class);
         return entityTypes;
     }
 

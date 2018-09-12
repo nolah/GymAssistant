@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
@@ -36,22 +37,41 @@ public class WorkoutApiResource {
     @Inject
     private WorkoutApi workoutApi;
 
-    @RequestMapping(value = "/start-workout", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/start-workout-plan", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<Void> startWorkout(@ApiIgnore @AuthenticationPrincipal Long principalId) {
-        log.debug("POST /start-workout");
+    public ResponseEntity<Void> startWorkoutPlan(@Valid @RequestBody StartWorkoutPlanRequest request, @ApiIgnore @AuthenticationPrincipal Long principalId) {
+        log.debug("POST /start-workout-plan {}", request);
 
-        workoutApi.startWorkout(principalId);
+        workoutApi.startWorkoutPlan(request, principalId);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/workout-plans", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAuthority('USER')")
+    public ResponseEntity<List<WorkoutPlansResponse>> workoutPlans(@RequestParam("userId") Long userId, @ApiIgnore @AuthenticationPrincipal Long principalId) {
+        log.debug("GET /workout-plans");
+
+        final WorkoutPlansRequest request = new WorkoutPlansRequest(userId);
+        final List<WorkoutPlansResponse> response = workoutApi.workoutPlans(request, principalId);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @RequestMapping(value = "/quick-info", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAuthority('USER')")
+    public ResponseEntity<QuickInfoResponse> quickInfo(@ApiIgnore @AuthenticationPrincipal Long principalId) {
+        log.debug("GET /quick-info");
+
+        final QuickInfoResponse response = workoutApi.quickInfo(principalId);
+        return ResponseEntity.ok().body(response);
     }
 
     @RequestMapping(value = "/workouts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<List<WorkoutsResponse>> workouts(@RequestParam("userId") Long userId, @ApiIgnore @AuthenticationPrincipal Long principalId) {
+    public ResponseEntity<WorkoutsResponse> workouts(@RequestParam("id") Long id, @ApiIgnore @AuthenticationPrincipal Long principalId) {
         log.debug("GET /workouts");
 
-        final WorkoutsRequest request = new WorkoutsRequest(userId);
-        final List<WorkoutsResponse> response = workoutApi.workouts(request, principalId);
+        final WorkoutsRequest request = new WorkoutsRequest(id);
+        final WorkoutsResponse response = workoutApi.workouts(request, principalId);
         return ResponseEntity.ok().body(response);
     }
 

@@ -16,6 +16,7 @@ public class WorkoutPlan implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final PropertyPath<Long> ID = new PropertyPath<>("id");
     public static final PropertyPath<User> USER = new PropertyPath<>("user");
+    public static final PropertyPath<String> NAME = new PropertyPath<>("name");
     public static final PropertyPath<Boolean> ACTIVE = new PropertyPath<>("active");
 
     @Id
@@ -28,6 +29,11 @@ public class WorkoutPlan implements Serializable {
     private User user;
 
     @NotNull
+    @Size(max = 255)
+    @Column(name = "name")
+    private String name;
+
+    @NotNull
     @Column(name = "active")
     private Boolean active;
 
@@ -38,14 +44,16 @@ public class WorkoutPlan implements Serializable {
     public WorkoutPlan() {
     }
 
-    public WorkoutPlan(Long id, User user, Boolean active) {
+    public WorkoutPlan(Long id, User user, String name, Boolean active) {
         this.id = id;
         this.user = user;
+        this.name = name;
         this.active = active;
     }
 
-    public WorkoutPlan(User user, Boolean active) {
+    public WorkoutPlan(User user, String name, Boolean active) {
         this.user = user;
+        this.name = name;
         this.active = active;
     }
 
@@ -63,6 +71,14 @@ public class WorkoutPlan implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Boolean getActive() {
@@ -92,6 +108,8 @@ public class WorkoutPlan implements Serializable {
                 || this.user.getId().equals(other.user.getId())))
             return false;
 
+        if (this.name != null && other.name != null && !this.name.equals(other.name))
+            return false;
         if (this.active != null && other.active != null && !this.active.equals(other.active))
             return false;
         return true;
@@ -103,13 +121,14 @@ public class WorkoutPlan implements Serializable {
         int result = 1;
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.user == null || this.user.getId() == null) ? 0 : this.user.getId().hashCode());
+        result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
         result = prime * result + ((this.active == null) ? 0 : this.active.hashCode());
         return result;
     }
 
     @Override
     public String toString() {
-        return "WorkoutPlan[" + "this.id=" + this.id + ", this.user=" + (this.user == null ? this.user : this.user.getId()) + ", this.active=" + this.active + "]";
+        return "WorkoutPlan[" + "this.id=" + this.id + ", this.user=" + (this.user == null ? this.user : this.user.getId()) + ", this.name=" + this.name + ", this.active=" + this.active + "]";
     }
 
 }

@@ -30,10 +30,24 @@ public class WorkoutPlanRepositoryImpl implements WorkoutPlanRepositoryCustom {
     }
 
     @Override
+    public List<WorkoutPlan> findByName(String name) {
+        log.trace(".findByName(name: {})", name);
+        final QWorkoutPlan workoutPlan = QWorkoutPlan.workoutPlan;
+        return factory.select(workoutPlan).from(workoutPlan).where(workoutPlan.name.eq(name)).fetch();
+    }
+
+    @Override
     public List<WorkoutPlan> findByActive(Boolean active) {
         log.trace(".findByActive(active: {})", active);
         final QWorkoutPlan workoutPlan = QWorkoutPlan.workoutPlan;
         return factory.select(workoutPlan).from(workoutPlan).where(workoutPlan.active.eq(active)).fetch();
+    }
+
+    @Override
+    public List<WorkoutPlan> workoutPlans(Long userId) {
+        log.trace(".workoutPlans(userId: {})", userId);
+        final QWorkoutPlan workoutPlan = QWorkoutPlan.workoutPlan;
+        return factory.select(workoutPlan).from(workoutPlan).where(workoutPlan.user.id.eq(userId)).fetch();
     }
 
 }

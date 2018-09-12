@@ -71,20 +71,37 @@ public abstract class AbstractApiTest extends AbstractDatabaseTest {
         return RestResponse.fromMvcResult(result, objectMapper, Void.class);
     }
 
-    public RestResponse<Void> startWorkout(String accessToken) throws Exception {
+    public RestResponse<Void> startWorkoutPlan(StartWorkoutPlanRequest request, String accessToken) throws Exception {
 
-        final MvcResult result = mockMvc
-                .perform(post("/api" + "/start-workout").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + accessToken).accept(MediaType.APPLICATION_JSON)).andReturn();
+        final MvcResult result = mockMvc.perform(post("/api" + "/start-workout-plan").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + accessToken)
+                .content(convertObjectToJsonBytes(request)).accept(MediaType.APPLICATION_JSON)).andReturn();
 
         return RestResponse.fromMvcResult(result, objectMapper, Void.class);
     }
 
-    public RestResponse<List<WorkoutsResponse>> workouts(Long userId, String accessToken) throws Exception {
+    public RestResponse<List<WorkoutPlansResponse>> workoutPlans(Long userId, String accessToken) throws Exception {
 
-        final MvcResult result = mockMvc.perform(get("/api" + "/workouts").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + accessToken).param("userId", userId.toString())
-                .accept(MediaType.APPLICATION_JSON)).andReturn();
+        final MvcResult result = mockMvc.perform(get("/api" + "/workout-plans").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + accessToken)
+                .param("userId", userId.toString()).accept(MediaType.APPLICATION_JSON)).andReturn();
 
-        return RestResponse.fromMvcResult(result, objectMapper, List.class, WorkoutsResponse.class);
+        return RestResponse.fromMvcResult(result, objectMapper, List.class, WorkoutPlansResponse.class);
+    }
+
+    public RestResponse<QuickInfoResponse> quickInfo(String accessToken) throws Exception {
+
+        final MvcResult result = mockMvc
+                .perform(get("/api" + "/quick-info").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + accessToken).accept(MediaType.APPLICATION_JSON)).andReturn();
+
+        return RestResponse.fromMvcResult(result, objectMapper, QuickInfoResponse.class);
+    }
+
+    public RestResponse<WorkoutsResponse> workouts(Long id, String accessToken) throws Exception {
+
+        final MvcResult result = mockMvc.perform(
+                get("/api" + "/workouts").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + accessToken).param("id", id.toString()).accept(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        return RestResponse.fromMvcResult(result, objectMapper, WorkoutsResponse.class);
     }
 
     public RestResponse<Void> updateWorkout(UpdateWorkoutRequest request, String accessToken) throws Exception {

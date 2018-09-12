@@ -24,6 +24,7 @@ GymAssistant project[
 
     WorkoutPlan model(
         user User
+        name text
         active boolean
         workouts list Workout[oneToMany workoutPlan]
     )
@@ -31,6 +32,22 @@ GymAssistant project[
     Workout model(
         workoutPlan WorkoutPlan
         date date
+        name text
+        exercises list Exercise[oneToMany workout]
+
+
+        workouts select from Workout
+          join WorkoutPlan on Workout.workoutPlan
+          join Exercise on Workout.exercises
+          where WorkoutPlan.active == true and WorkoutPlan.user.id == userId
+    )
+
+    Exercise model(
+        workout Workout
+        name text
+        goalReps integer
+        goalWeight decimal
+
         set1Reps integer
         set1Weight decimal
         set2Reps integer
@@ -40,22 +57,66 @@ GymAssistant project[
     )
 
     WorkoutApi api[rest, secured USER](
-        startWorkout create[
+        startWorkoutPlan create[
+            request dto(
+                maxSquat decimal
+                maxBench decimal
+                maxDeadlift decimal
+            )
+        ]
+
+        workoutPlans read[
+          select from WorkoutPlan where WorkoutPlan.user.id == userId
+        ]
+
+        quickInfo read[
+          response dto(
+              activeWorkoutPlanId optional WorkoutPlan.id
+              activeWorkoutPlanName optional WorkoutPlan.name
+              todaysWorkoutId optional Workout.id
+              todaysWorkoutName optional Workout.name
+          )
         ]
 
         workouts read[
-            select from Workout join WorkoutPlan on Workout.workoutPlan where WorkoutPlan.active == true and WorkoutPlan.user.id == userId
+            request dto(
+                WorkoutPlan.id
+            )
+
+            response dto(
+                WorkoutPlan.id
+                WorkoutPlan.name
+                WorkoutPlan.active
+                WorkoutPlan.workouts dto(
+                    Workout.date
+                    Workout.name
+                    Workout.exercises dto(
+                        Exercise.name
+                        Exercise.goalReps
+                        Exercise.goalWeight
+                        Exercise.set1Reps
+                        Exercise.set1Weight
+                        Exercise.set2Reps
+                        Exercise.set2Weight
+                        Exercise.set3Reps
+                        Exercise.set3Weight
+                    )
+                )
+            )
         ]
 
         updateWorkout update[
            model Workout
            request dto(
-                Workout.set1Reps
-                Workout.set1Weight
-                Workout.set2Reps
-                Workout.set2Weight
-                Workout.set3Reps
-                Workout.set3Weight
+                Workout.id
+                Workout.exercises dto(
+                  Exercise.set1Reps
+                  Exercise.set1Weight
+                  Exercise.set2Reps
+                  Exercise.set2Weight
+                  Exercise.set3Reps
+                  Exercise.set3Weight
+                )
            )
         ]
     )
