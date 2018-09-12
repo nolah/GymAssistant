@@ -246,7 +246,7 @@ public class WorkoutApi {
         final WorkoutPlan workoutPlan = workoutPlanRepository.findOne(dto.getId());
 
         return new WorkoutsResponse(workoutPlan.getId(), workoutPlan.getName(), workoutPlan.getActive(), workoutPlan.getWorkouts().stream().map(w -> {
-            return new WorkoutsResponseWorkouts(w.getDate(), w.getName(), w.getExercises().stream().map(e -> {
+            return new WorkoutsResponseWorkouts(w.getId(), w.getDate(), w.getName(), w.getExercises().stream().map(e -> {
                 return new WorkoutsResponseWorkoutsExercises(e.getName(), e.getGoalReps(), e.getGoalWeight(), e.getSet1Reps(), e.getSet1Weight(), e.getSet2Reps(), e.getSet2Weight(), e.getSet3Reps(), e.getSet3Weight());
             }).collect(Collectors.toList()));
         }).collect(Collectors.toList()));
