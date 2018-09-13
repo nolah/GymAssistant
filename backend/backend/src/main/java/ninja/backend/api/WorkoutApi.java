@@ -58,6 +58,7 @@ public class WorkoutApi {
         newWorkoutPlan.setActive(true);
         newWorkoutPlan.setUser(principal);
         newWorkoutPlan.setName("Linear progression " + workoutPlans.size() + 1);
+        workoutPlanRepository.save(newWorkoutPlan);
 
         ZonedDateTime monday = ZonedDateTime.now().with(DayOfWeek.MONDAY);
         ZonedDateTime tuesday = ZonedDateTime.now().with(DayOfWeek.TUESDAY);
@@ -71,6 +72,8 @@ public class WorkoutApi {
             final Workout mondayWorkout = new Workout();
             mondayWorkout.setName("Squat day, week: " + i + 1);
             mondayWorkout.setDate(monday);
+            mondayWorkout.setWorkoutPlan(newWorkoutPlan);
+            workoutRepository.save(mondayWorkout);
 
             final Exercise exercise1 = new Exercise();
             exercise1.setName("Back squat");
@@ -82,6 +85,8 @@ public class WorkoutApi {
             exercise1.setSet2Weight(BigDecimal.ZERO);
             exercise1.setSet3Reps(0);
             exercise1.setSet3Weight(BigDecimal.ZERO);
+            exercise1.setWorkout(mondayWorkout);
+            exerciseRepository.save(exercise1);
             mondayWorkout.getExercises().add(exercise1);
 
             final Exercise exercise2 = new Exercise();
@@ -94,6 +99,8 @@ public class WorkoutApi {
             exercise2.setSet2Weight(BigDecimal.ZERO);
             exercise2.setSet3Reps(0);
             exercise2.setSet3Weight(BigDecimal.ZERO);
+            exercise2.setWorkout(mondayWorkout);
+            exerciseRepository.save(exercise2);
             mondayWorkout.getExercises().add(exercise2);
 
             newWorkoutPlan.getWorkouts().add(mondayWorkout);
@@ -101,6 +108,8 @@ public class WorkoutApi {
             final Workout tuesdayWorkout = new Workout();
             tuesdayWorkout.setName("Bench day, week: " + i + 1);
             tuesdayWorkout.setDate(tuesday);
+            tuesdayWorkout.setWorkoutPlan(newWorkoutPlan);
+            workoutRepository.save(tuesdayWorkout);
 
             final Exercise exercise3 = new Exercise();
             exercise3.setName("Bench press");
@@ -112,6 +121,8 @@ public class WorkoutApi {
             exercise3.setSet2Weight(BigDecimal.ZERO);
             exercise3.setSet3Reps(0);
             exercise3.setSet3Weight(BigDecimal.ZERO);
+            exercise3.setWorkout(tuesdayWorkout);
+            exerciseRepository.save(exercise3);
             tuesdayWorkout.getExercises().add(exercise3);
 
             final Exercise exercise4 = new Exercise();
@@ -124,6 +135,8 @@ public class WorkoutApi {
             exercise4.setSet2Weight(BigDecimal.ZERO);
             exercise4.setSet3Reps(0);
             exercise4.setSet3Weight(BigDecimal.ZERO);
+            exercise4.setWorkout(tuesdayWorkout);
+            exerciseRepository.save(exercise4);
             tuesdayWorkout.getExercises().add(exercise4);
 
             newWorkoutPlan.getWorkouts().add(tuesdayWorkout);
@@ -131,6 +144,8 @@ public class WorkoutApi {
             final Workout thursdayWorkout = new Workout();
             thursdayWorkout.setName("Deadlift day, week: " + i + 1);
             thursdayWorkout.setDate(thursday);
+            thursdayWorkout.setWorkoutPlan(newWorkoutPlan);
+            workoutRepository.save(thursdayWorkout);
 
             final Exercise exercise5 = new Exercise();
             exercise5.setName("Deadlift");
@@ -142,6 +157,8 @@ public class WorkoutApi {
             exercise5.setSet2Weight(BigDecimal.ZERO);
             exercise5.setSet3Reps(0);
             exercise5.setSet3Weight(BigDecimal.ZERO);
+            exercise5.setWorkout(thursdayWorkout);
+            exerciseRepository.save(exercise5);
             thursdayWorkout.getExercises().add(exercise5);
 
             final Exercise exercise6 = new Exercise();
@@ -154,6 +171,8 @@ public class WorkoutApi {
             exercise6.setSet2Weight(BigDecimal.ZERO);
             exercise6.setSet3Reps(0);
             exercise6.setSet3Weight(BigDecimal.ZERO);
+            exercise6.setWorkout(thursdayWorkout);
+            exerciseRepository.save(exercise6);
             thursdayWorkout.getExercises().add(exercise6);
 
             newWorkoutPlan.getWorkouts().add(thursdayWorkout);
@@ -161,6 +180,8 @@ public class WorkoutApi {
             final Workout fridayWorkout = new Workout();
             fridayWorkout.setName("Overhead press day, week: " + i + 1);
             fridayWorkout.setDate(friday);
+            fridayWorkout.setWorkoutPlan(newWorkoutPlan);
+            workoutRepository.save(fridayWorkout);
 
             final Exercise exercise7 = new Exercise();
             exercise7.setName("Overhead press");
@@ -172,6 +193,8 @@ public class WorkoutApi {
             exercise7.setSet2Weight(BigDecimal.ZERO);
             exercise7.setSet3Reps(0);
             exercise7.setSet3Weight(BigDecimal.ZERO);
+            exercise7.setWorkout(fridayWorkout);
+            exerciseRepository.save(exercise7);
             fridayWorkout.getExercises().add(exercise7);
 
             final Exercise exercise8 = new Exercise();
@@ -184,6 +207,8 @@ public class WorkoutApi {
             exercise8.setSet2Weight(BigDecimal.ZERO);
             exercise8.setSet3Reps(0);
             exercise8.setSet3Weight(BigDecimal.ZERO);
+            exercise8.setWorkout(fridayWorkout);
+            exerciseRepository.save(exercise8);
             fridayWorkout.getExercises().add(exercise8);
 
             newWorkoutPlan.getWorkouts().add(fridayWorkout);
@@ -193,6 +218,8 @@ public class WorkoutApi {
             thursday.plusWeeks(1);
             friday.plusWeeks(1);
         }
+
+        workoutPlanRepository.save(newWorkoutPlan);
 
     }
 

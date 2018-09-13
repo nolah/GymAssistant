@@ -21,8 +21,8 @@ spring:
             hibernate.generate_statistics: true
 custom:
     secretKey: changeme
-    accessTokenValidityInSeconds: 300
-    refreshTokenValidityInSeconds: 3600
+    accessTokenValidityInSeconds: 300000
+    refreshTokenValidityInSeconds: 3600000
     datasource:
         cachePrepStmts: true
         prepStmtCacheSize: 250
