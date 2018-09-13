@@ -26,13 +26,13 @@ public class WorkoutRepositoryImpl implements WorkoutRepositoryCustom {
     private JPQLQueryFactory factory;
 
     @Override
-    public List<WorkoutWorkoutsTuple> workouts(Long userId) {
-        log.trace(".workouts(userId: {})", userId);
+    public List<WorkoutWorkoutsTuple> workouts(Long principalUser) {
+        log.trace(".workouts(principalUser: {})", principalUser);
         final QWorkout workout = QWorkout.workout;
         final QWorkoutPlan workoutPlan = QWorkoutPlan.workoutPlan;
         final QExercise exercise = QExercise.exercise;
         return factory.select(workout, workoutPlan, exercise).from(workout).innerJoin(workout.workoutPlan, workoutPlan).innerJoin(workout.exercises, exercise)
-                .where(new BooleanBuilder().and(workoutPlan.active.eq(true)).and(workoutPlan.user.id.eq(userId))).fetch().stream()
+                .where(new BooleanBuilder().and(workoutPlan.active.eq(true)).and(workoutPlan.user.id.eq(principalUser))).fetch().stream()
                 .map(t -> new WorkoutWorkoutsTuple(t.get(workout), t.get(workoutPlan), t.get(exercise))).collect(Collectors.toList());
     }
 

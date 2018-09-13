@@ -49,13 +49,13 @@ public class WorkoutApi {
     }
 
     @Transactional(readOnly = true)
-    public List<WorkoutPlansResponse> workoutPlans(WorkoutPlansRequest dto, Long principalId) {
-        log.debug("workoutPlans {} {}", dto, principalId);
-        //TODO check security constraints(userId)
+    public List<WorkoutPlansResponse> workoutPlans(Long principalId) {
+        log.debug("workoutPlans {}", principalId);
+        //TODO check security constraints
 
         final User principal = userRepository.findOne(principalId);
 
-        final List<WorkoutPlan> models = workoutPlanRepository.workoutPlans(dto.getUserId());
+        final List<WorkoutPlan> models = workoutPlanRepository.workoutPlans(principal.getId());
         return models.stream().map(model -> {
             final Long id = model.getId();
             final Long userId = model.getUser().getId();

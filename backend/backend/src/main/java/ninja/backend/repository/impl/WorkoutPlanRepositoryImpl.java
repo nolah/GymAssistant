@@ -44,10 +44,10 @@ public class WorkoutPlanRepositoryImpl implements WorkoutPlanRepositoryCustom {
     }
 
     @Override
-    public List<WorkoutPlan> workoutPlans(Long userId) {
-        log.trace(".workoutPlans(userId: {})", userId);
+    public List<WorkoutPlan> workoutPlans(Long principalUser) {
+        log.trace(".workoutPlans(principalUser: {})", principalUser);
         final QWorkoutPlan workoutPlan = QWorkoutPlan.workoutPlan;
-        return factory.select(workoutPlan).from(workoutPlan).where(workoutPlan.user.id.eq(userId)).fetch();
+        return factory.select(workoutPlan).from(workoutPlan).where(workoutPlan.user.id.eq(principalUser)).fetch();
     }
 
 }

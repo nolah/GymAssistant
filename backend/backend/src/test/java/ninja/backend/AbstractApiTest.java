@@ -79,10 +79,10 @@ public abstract class AbstractApiTest extends AbstractDatabaseTest {
         return RestResponse.fromMvcResult(result, objectMapper, Void.class);
     }
 
-    public RestResponse<List<WorkoutPlansResponse>> workoutPlans(Long userId, String accessToken) throws Exception {
+    public RestResponse<List<WorkoutPlansResponse>> workoutPlans(String accessToken) throws Exception {
 
-        final MvcResult result = mockMvc.perform(get("/api" + "/workout-plans").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + accessToken)
-                .param("userId", userId.toString()).accept(MediaType.APPLICATION_JSON)).andReturn();
+        final MvcResult result = mockMvc
+                .perform(get("/api" + "/workout-plans").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + accessToken).accept(MediaType.APPLICATION_JSON)).andReturn();
 
         return RestResponse.fromMvcResult(result, objectMapper, List.class, WorkoutPlansResponse.class);
     }
