@@ -72,7 +72,6 @@ public abstract class AbstractDatabaseTest implements IFabutRepositoryTest {
         complexTypes.add(SignInRequest.class);
         complexTypes.add(ChangePasswordRequest.class);
         complexTypes.add(StartWorkoutPlanRequest.class);
-        complexTypes.add(WorkoutPlansRequest.class);
         complexTypes.add(WorkoutPlansResponse.class);
         complexTypes.add(QuickInfoResponse.class);
         complexTypes.add(WorkoutsRequest.class);

@@ -10,7 +10,7 @@ import ninja.backend.repository.tuple.*;
 
 public interface WorkoutRepositoryCustom {
 
-    List<WorkoutWorkoutsTuple> workouts(Long userId);
+    List<WorkoutWorkoutsTuple> workouts(Long principalUser);
 
     List<Workout> findByWorkoutPlan(Long workoutPlanId);
 
