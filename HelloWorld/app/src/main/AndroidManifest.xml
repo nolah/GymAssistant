@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pmf.danijela.helloworld">
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivity_">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.SignUpActivity_" />
+        <activity android:name=".activity.SignInActivity_" />
+        <activity android:name=".activity.StartWorkoutPlanActivity_" />
+        <activity android:name=".activity.WorkoutPlansActivity_" />
+        <activity android:name=".activity.WorkoutsActivity_" />
+        <activity android:name=".activity.ExerciseActivity_" />
+    </application>
+
+</manifest>

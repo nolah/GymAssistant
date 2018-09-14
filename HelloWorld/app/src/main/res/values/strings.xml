@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">HelloWorld No!</string>
+    <string name="text_view">Hello World With!</string>
+    <string name="text_view_land">Hello Landscape!</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="sign_in">Sign in</string>
+    <string name="go_register">Go register</string>
+    <string name="start_workout_plan">Start working out!</string>
+    <string name="go_to_active_workout_plan">Active workout!</string>
+    <string name="go_to_todays_workout">Today\'s workout!</string>
+    <string name="go_to_workout_plans">Go to workout plans!</string>
+    <string name="go_to_exercises">Details</string>
+    <string name="go_to_workouts">Details</string>
+    <string name="max_squat">Max squat</string>
+    <string name="max_bench">Max bench</string>
+    <string name="max_deadlift">Max deadlift</string>
+    <string name="goal_reps_and_weight">Goal: %1$s reps, %2$s kg</string>
+    <string name="set1_reps">Set 1 reps</string>
+    <string name="set1_weight">Set 1 weight</string>
+    <string name="set2_reps">Set 2 reps</string>
+    <string name="set2_weight">Set 2 weight</string>
+    <string name="set3_reps">Set 3 reps</string>
+    <string name="set3_weight">Set 3 weight</string>
+    <string name="update_workout">Save</string>
+</resources>
