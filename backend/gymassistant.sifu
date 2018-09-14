@@ -106,6 +106,11 @@ GymAssistant project[
             )
         ]
 
+        workout read[
+            response list WorkoutsResponseWorkouts
+            request dto(Workout.id)
+        ]
+
         updateWorkout update[
            model Workout
            request dto(

@@ -104,6 +104,16 @@ public abstract class AbstractApiTest extends AbstractDatabaseTest {
         return RestResponse.fromMvcResult(result, objectMapper, WorkoutsResponse.class);
     }
 
+    public RestResponse<List<WorkoutsResponseWorkouts>> workout(Long id, String accessToken) throws Exception {
+
+        final MvcResult result = mockMvc
+                .perform(
+                        get("/api" + "/workout").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + accessToken).param("id", id.toString()).accept(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        return RestResponse.fromMvcResult(result, objectMapper, List.class, WorkoutsResponseWorkouts.class);
+    }
+
     public RestResponse<Void> updateWorkout(UpdateWorkoutRequest request, String accessToken) throws Exception {
 
         final MvcResult result = mockMvc.perform(put("/api" + "/update-workout").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + accessToken)
