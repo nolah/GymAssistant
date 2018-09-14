@@ -70,7 +70,7 @@ public class WorkoutApi {
         final double maxDeadlift = dto.getMaxDeadlift().doubleValue();
         for (int i = 0; i <= 10; i++) {
             final Workout mondayWorkout = new Workout();
-            mondayWorkout.setName("Squat day, week: " + i + 1);
+            mondayWorkout.setName("Squat day, week: " + (i + 1));
             mondayWorkout.setDate(monday);
             mondayWorkout.setWorkoutPlan(newWorkoutPlan);
             workoutRepository.save(mondayWorkout);
@@ -106,7 +106,7 @@ public class WorkoutApi {
             newWorkoutPlan.getWorkouts().add(mondayWorkout);
 
             final Workout tuesdayWorkout = new Workout();
-            tuesdayWorkout.setName("Bench day, week: " + i + 1);
+            tuesdayWorkout.setName("Bench day, week: " + (i + 1));
             tuesdayWorkout.setDate(tuesday);
             tuesdayWorkout.setWorkoutPlan(newWorkoutPlan);
             workoutRepository.save(tuesdayWorkout);
@@ -142,7 +142,7 @@ public class WorkoutApi {
             newWorkoutPlan.getWorkouts().add(tuesdayWorkout);
 
             final Workout thursdayWorkout = new Workout();
-            thursdayWorkout.setName("Deadlift day, week: " + i + 1);
+            thursdayWorkout.setName("Deadlift day, week: " + (i + 1));
             thursdayWorkout.setDate(thursday);
             thursdayWorkout.setWorkoutPlan(newWorkoutPlan);
             workoutRepository.save(thursdayWorkout);
@@ -178,7 +178,7 @@ public class WorkoutApi {
             newWorkoutPlan.getWorkouts().add(thursdayWorkout);
 
             final Workout fridayWorkout = new Workout();
-            fridayWorkout.setName("Overhead press day, week: " + i + 1);
+            fridayWorkout.setName("Overhead press day, week: " + (i + 1));
             fridayWorkout.setDate(friday);
             fridayWorkout.setWorkoutPlan(newWorkoutPlan);
             workoutRepository.save(fridayWorkout);
@@ -213,10 +213,10 @@ public class WorkoutApi {
 
             newWorkoutPlan.getWorkouts().add(fridayWorkout);
 
-            monday.plusWeeks(1);
-            tuesday.plusWeeks(1);
-            thursday.plusWeeks(1);
-            friday.plusWeeks(1);
+            monday = monday.plusWeeks(1);
+            tuesday = tuesday.plusWeeks(1);
+            thursday = thursday.plusWeeks(1);
+            friday = friday.plusWeeks(1);
         }
 
         workoutPlanRepository.save(newWorkoutPlan);
@@ -272,7 +272,12 @@ public class WorkoutApi {
 
         final WorkoutPlan workoutPlan = workoutPlanRepository.findOne(dto.getId());
 
-        return new WorkoutsResponse(workoutPlan.getId(), workoutPlan.getName(), workoutPlan.getActive(), workoutPlan.getWorkouts().stream().map(w -> {
+        return new WorkoutsResponse(workoutPlan.getId(), workoutPlan.getName(), workoutPlan.getActive(), workoutPlan.getWorkouts().stream().sorted(new Comparator<Workout>() {
+            @Override
+            public int compare(Workout o1, Workout o2) {
+                return o1.getId() > o2.getId() ? -1 : 1;
+            }
+        }).map(w -> {
             return new WorkoutsResponseWorkouts(w.getId(), w.getDate(), w.getName(), w.getExercises().stream().map(e -> {
                 return new WorkoutsResponseWorkoutsExercises(e.getName(), e.getGoalReps(), e.getGoalWeight(), e.getSet1Reps(), e.getSet1Weight(), e.getSet2Reps(), e.getSet2Weight(), e.getSet3Reps(), e.getSet3Weight());
             }).collect(Collectors.toList()));
