@@ -279,7 +279,7 @@ public class WorkoutApi {
             }
         }).map(w -> {
             return new WorkoutsResponseWorkouts(w.getId(), w.getDate(), w.getName(), w.getExercises().stream().map(e -> {
-                return new WorkoutsResponseWorkoutsExercises(e.getName(), e.getGoalReps(), e.getGoalWeight(), e.getSet1Reps(), e.getSet1Weight(), e.getSet2Reps(), e.getSet2Weight(), e.getSet3Reps(), e.getSet3Weight());
+                return new WorkoutsResponseWorkoutsExercises(e.getId(), e.getName(), e.getGoalReps(), e.getGoalWeight(), e.getSet1Reps(), e.getSet1Weight(), e.getSet2Reps(), e.getSet2Weight(), e.getSet3Reps(), e.getSet3Weight());
             }).collect(Collectors.toList()));
         }).collect(Collectors.toList()));
     }
@@ -293,7 +293,7 @@ public class WorkoutApi {
 
         final Workout workout = workoutRepository.findOne(dto.getId());
         return new WorkoutsResponseWorkouts(workout.getId(), workout.getDate(), workout.getName(), workout.getExercises().stream().map(e -> {
-            return new WorkoutsResponseWorkoutsExercises(e.getName(), e.getGoalReps(), e.getGoalWeight(), e.getSet1Reps(), e.getSet1Weight(), e.getSet2Reps(), e.getSet2Weight(), e.getSet3Reps(), e.getSet3Weight());
+            return new WorkoutsResponseWorkoutsExercises(e.getId(), e.getName(), e.getGoalReps(), e.getGoalWeight(), e.getSet1Reps(), e.getSet1Weight(), e.getSet2Reps(), e.getSet2Weight(), e.getSet3Reps(), e.getSet3Weight());
         }).collect(Collectors.toList()));
     }
 
