@@ -285,7 +285,7 @@ public class WorkoutApi {
     }
 
     @Transactional(readOnly = true)
-    public List<WorkoutsResponseWorkouts> workout(WorkoutRequest dto, Long principalId) {
+    public WorkoutsResponseWorkouts workout(WorkoutRequest dto, Long principalId) {
         log.debug("workout {} {}", dto, principalId);
         //TODO check security constraints(id)
 

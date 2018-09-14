@@ -107,7 +107,7 @@ GymAssistant project[
         ]
 
         workout read[
-            response list WorkoutsResponseWorkouts
+            response WorkoutsResponseWorkouts
             request dto(Workout.id)
         ]
 
