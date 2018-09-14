@@ -291,7 +291,10 @@ public class WorkoutApi {
 
         final User principal = userRepository.findOne(principalId);
 
-        throw new UnsupportedOperationException();
+        final Workout workout = workoutRepository.findOne(dto.getId());
+        return return new WorkoutsResponseWorkouts(workout.getId(), workout.getDate(), workout.getName(), workout.getExercises().stream().map(e -> {
+            return new WorkoutsResponseWorkoutsExercises(e.getName(), e.getGoalReps(), e.getGoalWeight(), e.getSet1Reps(), e.getSet1Weight(), e.getSet2Reps(), e.getSet2Weight(), e.getSet3Reps(), e.getSet3Weight());
+        }).collect(Collectors.toList()));
     }
 
     public void updateWorkout(UpdateWorkoutRequest dto, Long principalId) {
