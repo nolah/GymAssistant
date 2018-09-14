@@ -116,6 +116,7 @@ GymAssistant project[
            request dto(
                 Workout.id
                 Workout.exercises dto(
+                  Exercise.id
                   Exercise.set1Reps
                   Exercise.set1Weight
                   Exercise.set2Reps
