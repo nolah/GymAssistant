@@ -123,6 +123,7 @@ public class WorkoutApi {
     }
 
     private WorkoutsResponseWorkoutsExercises convertToWorkoutsResponseWorkoutsExercises(Exercise model) {
+        final Long id = model.getId();
         final String name = model.getName();
         final Integer goalReps = model.getGoalReps();
         final BigDecimal goalWeight = model.getGoalWeight();
@@ -132,7 +133,7 @@ public class WorkoutApi {
         final BigDecimal set2Weight = model.getSet2Weight();
         final Integer set3Reps = model.getSet3Reps();
         final BigDecimal set3Weight = model.getSet3Weight();
-        return new WorkoutsResponseWorkoutsExercises(name, goalReps, goalWeight, set1Reps, set1Weight, set2Reps, set2Weight, set3Reps, set3Weight);
+        return new WorkoutsResponseWorkoutsExercises(id, name, goalReps, goalWeight, set1Reps, set1Weight, set2Reps, set2Weight, set3Reps, set3Weight);
     }
 
     private Exercise convertToExercise(UpdateWorkoutRequestExercises dto) {

@@ -12,6 +12,7 @@ import eu.execom.fabut.property.PropertyPath;
 public class WorkoutsResponseWorkoutsExercises implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    public static final PropertyPath<Long> ID = new PropertyPath<>("id");
     public static final PropertyPath<String> NAME = new PropertyPath<>("name");
     public static final PropertyPath<Integer> GOAL_REPS = new PropertyPath<>("goalReps");
     public static final PropertyPath<BigDecimal> GOAL_WEIGHT = new PropertyPath<>("goalWeight");
@@ -21,6 +22,9 @@ public class WorkoutsResponseWorkoutsExercises implements Serializable {
     public static final PropertyPath<BigDecimal> SET_2_WEIGHT = new PropertyPath<>("set2Weight");
     public static final PropertyPath<Integer> SET_3_REPS = new PropertyPath<>("set3Reps");
     public static final PropertyPath<BigDecimal> SET_3_WEIGHT = new PropertyPath<>("set3Weight");
+
+    @NotNull
+    private Long id;
 
     @NotNull
     @Size(max = 255)
@@ -53,8 +57,9 @@ public class WorkoutsResponseWorkoutsExercises implements Serializable {
     private WorkoutsResponseWorkoutsExercises() {
     }
 
-    public WorkoutsResponseWorkoutsExercises(String name, Integer goalReps, BigDecimal goalWeight, Integer set1Reps, BigDecimal set1Weight, Integer set2Reps, BigDecimal set2Weight, Integer set3Reps,
-            BigDecimal set3Weight) {
+    public WorkoutsResponseWorkoutsExercises(Long id, String name, Integer goalReps, BigDecimal goalWeight, Integer set1Reps, BigDecimal set1Weight, Integer set2Reps, BigDecimal set2Weight,
+            Integer set3Reps, BigDecimal set3Weight) {
+        this.id = id;
         this.name = name;
         this.goalReps = goalReps;
         this.goalWeight = goalWeight;
@@ -64,6 +69,10 @@ public class WorkoutsResponseWorkoutsExercises implements Serializable {
         this.set2Weight = set2Weight;
         this.set3Reps = set3Reps;
         this.set3Weight = set3Weight;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -111,6 +120,8 @@ public class WorkoutsResponseWorkoutsExercises implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         final WorkoutsResponseWorkoutsExercises other = (WorkoutsResponseWorkoutsExercises) obj;
+        if (this.id != null && other.id != null && !this.id.equals(other.id))
+            return false;
         if (this.name != null && other.name != null && !this.name.equals(other.name))
             return false;
         if (this.goalReps != null && other.goalReps != null && !this.goalReps.equals(other.goalReps))
@@ -136,6 +147,7 @@ public class WorkoutsResponseWorkoutsExercises implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
         result = prime * result + ((this.goalReps == null) ? 0 : this.goalReps.hashCode());
         result = prime * result + ((this.goalWeight == null) ? 0 : this.goalWeight.hashCode());
@@ -150,9 +162,9 @@ public class WorkoutsResponseWorkoutsExercises implements Serializable {
 
     @Override
     public String toString() {
-        return "WorkoutsResponseWorkoutsExercises[" + "this.name=" + this.name + ", this.goalReps=" + this.goalReps + ", this.goalWeight=" + this.goalWeight + ", this.set1Reps=" + this.set1Reps
-                + ", this.set1Weight=" + this.set1Weight + ", this.set2Reps=" + this.set2Reps + ", this.set2Weight=" + this.set2Weight + ", this.set3Reps=" + this.set3Reps + ", this.set3Weight="
-                + this.set3Weight + "]";
+        return "WorkoutsResponseWorkoutsExercises[" + "this.id=" + this.id + ", this.name=" + this.name + ", this.goalReps=" + this.goalReps + ", this.goalWeight=" + this.goalWeight
+                + ", this.set1Reps=" + this.set1Reps + ", this.set1Weight=" + this.set1Weight + ", this.set2Reps=" + this.set2Reps + ", this.set2Weight=" + this.set2Weight + ", this.set3Reps="
+                + this.set3Reps + ", this.set3Weight=" + this.set3Weight + "]";
     }
 
 }

@@ -92,6 +92,7 @@ GymAssistant project[
                     Workout.date
                     Workout.name
                     Workout.exercises dto(
+                        Exercise.id
                         Exercise.name
                         Exercise.goalReps
                         Exercise.goalWeight
