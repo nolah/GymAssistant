@@ -69,6 +69,20 @@ public class WorkoutApiTest extends AbstractApiTest {
     }
 
     @Test
+    public void testWorkout() throws Exception {
+
+        // setup
+
+        // method
+        takeSnapshot();
+        //workout().getData();
+        fail("test not implemented");
+
+        // assert
+
+    }
+
+    @Test
     public void testUpdateWorkout() throws Exception {
 
         // setup

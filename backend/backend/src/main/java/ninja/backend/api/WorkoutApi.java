@@ -284,6 +284,16 @@ public class WorkoutApi {
         }).collect(Collectors.toList()));
     }
 
+    @Transactional(readOnly = true)
+    public List<WorkoutsResponseWorkouts> workout(WorkoutRequest dto, Long principalId) {
+        log.debug("workout {} {}", dto, principalId);
+        //TODO check security constraints(id)
+
+        final User principal = userRepository.findOne(principalId);
+
+        throw new UnsupportedOperationException();
+    }
+
     public void updateWorkout(UpdateWorkoutRequest dto, Long principalId) {
         log.debug("updateWorkout {} {}", dto, principalId);
 
