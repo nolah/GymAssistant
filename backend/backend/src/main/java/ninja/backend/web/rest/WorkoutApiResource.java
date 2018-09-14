@@ -76,11 +76,11 @@ public class WorkoutApiResource {
 
     @RequestMapping(value = "/workout", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<List<WorkoutsResponseWorkouts>> workout(@RequestParam("id") Long id, @ApiIgnore @AuthenticationPrincipal Long principalId) {
+    public ResponseEntity<WorkoutsResponseWorkouts> workout(@RequestParam("id") Long id, @ApiIgnore @AuthenticationPrincipal Long principalId) {
         log.debug("GET /workout");
 
         final WorkoutRequest request = new WorkoutRequest(id);
-        final List<WorkoutsResponseWorkouts> response = workoutApi.workout(request, principalId);
+        final WorkoutsResponseWorkouts response = workoutApi.workout(request, principalId);
         return ResponseEntity.ok().body(response);
     }
 
