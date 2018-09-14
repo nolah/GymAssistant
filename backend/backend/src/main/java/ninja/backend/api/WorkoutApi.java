@@ -136,7 +136,8 @@ public class WorkoutApi {
     }
 
     private Exercise convertToExercise(UpdateWorkoutRequestExercises dto) {
-        final Exercise model = new Exercise();
+        //TODO check security constraints(id)
+        final Exercise model = exerciseRepository.findOne(dto.getId());
         model.setSet1Reps(dto.getSet1Reps());
         model.setSet1Weight(dto.getSet1Weight());
         model.setSet2Reps(dto.getSet2Reps());

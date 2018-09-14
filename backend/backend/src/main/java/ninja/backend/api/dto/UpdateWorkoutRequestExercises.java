@@ -12,12 +12,16 @@ import eu.execom.fabut.property.PropertyPath;
 public class UpdateWorkoutRequestExercises implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    public static final PropertyPath<Long> ID = new PropertyPath<>("id");
     public static final PropertyPath<Integer> SET_1_REPS = new PropertyPath<>("set1Reps");
     public static final PropertyPath<BigDecimal> SET_1_WEIGHT = new PropertyPath<>("set1Weight");
     public static final PropertyPath<Integer> SET_2_REPS = new PropertyPath<>("set2Reps");
     public static final PropertyPath<BigDecimal> SET_2_WEIGHT = new PropertyPath<>("set2Weight");
     public static final PropertyPath<Integer> SET_3_REPS = new PropertyPath<>("set3Reps");
     public static final PropertyPath<BigDecimal> SET_3_WEIGHT = new PropertyPath<>("set3Weight");
+
+    @NotNull
+    private Long id;
 
     @NotNull
     private Integer set1Reps;
@@ -40,13 +44,18 @@ public class UpdateWorkoutRequestExercises implements Serializable {
     private UpdateWorkoutRequestExercises() {
     }
 
-    public UpdateWorkoutRequestExercises(Integer set1Reps, BigDecimal set1Weight, Integer set2Reps, BigDecimal set2Weight, Integer set3Reps, BigDecimal set3Weight) {
+    public UpdateWorkoutRequestExercises(Long id, Integer set1Reps, BigDecimal set1Weight, Integer set2Reps, BigDecimal set2Weight, Integer set3Reps, BigDecimal set3Weight) {
+        this.id = id;
         this.set1Reps = set1Reps;
         this.set1Weight = set1Weight;
         this.set2Reps = set2Reps;
         this.set2Weight = set2Weight;
         this.set3Reps = set3Reps;
         this.set3Weight = set3Weight;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Integer getSet1Reps() {
@@ -82,6 +91,8 @@ public class UpdateWorkoutRequestExercises implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         final UpdateWorkoutRequestExercises other = (UpdateWorkoutRequestExercises) obj;
+        if (this.id != null && other.id != null && !this.id.equals(other.id))
+            return false;
         if (this.set1Reps != null && other.set1Reps != null && !this.set1Reps.equals(other.set1Reps))
             return false;
         if (this.set1Weight != null && other.set1Weight != null && !this.set1Weight.equals(other.set1Weight))
@@ -101,6 +112,7 @@ public class UpdateWorkoutRequestExercises implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.set1Reps == null) ? 0 : this.set1Reps.hashCode());
         result = prime * result + ((this.set1Weight == null) ? 0 : this.set1Weight.hashCode());
         result = prime * result + ((this.set2Reps == null) ? 0 : this.set2Reps.hashCode());
@@ -112,8 +124,8 @@ public class UpdateWorkoutRequestExercises implements Serializable {
 
     @Override
     public String toString() {
-        return "UpdateWorkoutRequestExercises[" + "this.set1Reps=" + this.set1Reps + ", this.set1Weight=" + this.set1Weight + ", this.set2Reps=" + this.set2Reps + ", this.set2Weight="
-                + this.set2Weight + ", this.set3Reps=" + this.set3Reps + ", this.set3Weight=" + this.set3Weight + "]";
+        return "UpdateWorkoutRequestExercises[" + "this.id=" + this.id + ", this.set1Reps=" + this.set1Reps + ", this.set1Weight=" + this.set1Weight + ", this.set2Reps=" + this.set2Reps
+                + ", this.set2Weight=" + this.set2Weight + ", this.set3Reps=" + this.set3Reps + ", this.set3Weight=" + this.set3Weight + "]";
     }
 
 }
