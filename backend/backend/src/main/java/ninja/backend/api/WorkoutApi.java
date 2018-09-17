@@ -13,11 +13,9 @@ import ninja.backend.api.dto.*;
 import java.util.*;
 import java.util.stream.*;
 
-import ninja.backend.model.enumeration.*;
 
 import java.math.BigDecimal;
 
-import ninja.backend.repository.tuple.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -275,7 +273,7 @@ public class WorkoutApi {
         return new WorkoutsResponse(workoutPlan.getId(), workoutPlan.getName(), workoutPlan.getActive(), workoutPlan.getWorkouts().stream().sorted(new Comparator<Workout>() {
             @Override
             public int compare(Workout o1, Workout o2) {
-                return o1.getId() > o2.getId() ? -1 : 1;
+                return o1.getId() >= o2.getId() ? 1 : -1;
             }
         }).map(w -> {
             return new WorkoutsResponseWorkouts(w.getId(), w.getDate(), w.getName(), w.getExercises().stream().map(e -> {
