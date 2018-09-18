@@ -8,14 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-
-import java.util.List;
-
-import org.ninja.gymassistant.dto.WorkoutPlansResponse;
 import org.ninja.gymassistant.R;
 import org.ninja.gymassistant.activity.BaseActivity;
 import org.ninja.gymassistant.adapter.WorkoutPlansAdapter;
+import org.ninja.gymassistant.dto.WorkoutPlansResponse;
 import org.ninja.gymassistant.http.SecuredApiService;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

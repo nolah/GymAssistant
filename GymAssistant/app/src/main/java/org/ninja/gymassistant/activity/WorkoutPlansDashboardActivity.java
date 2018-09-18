@@ -2,13 +2,11 @@ package org.ninja.gymassistant.activity;
 
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.FragmentById;
-
+import org.ninja.gymassistant.R;
 import org.ninja.gymassistant.dto.WorkoutPlansResponse;
 import org.ninja.gymassistant.dto.WorkoutsResponseWorkouts;
 import org.ninja.gymassistant.fragment.WorkoutFragment;
 import org.ninja.gymassistant.fragment.WorkoutPlansFragment;
-import org.ninja.gymassistant.R;
-import org.ninja.gymassistant.activity.ExerciseDashboardActivity_;
 
 @EActivity(R.layout.activity_workout_plans_dashboard)
 public class WorkoutPlansDashboardActivity extends BaseActivity implements WorkoutPlansFragment.WorkoutPlansHandler, WorkoutFragment.WorkoutHandler {

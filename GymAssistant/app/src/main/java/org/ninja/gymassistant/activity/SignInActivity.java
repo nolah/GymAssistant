@@ -9,14 +9,12 @@ import android.widget.EditText;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
+import org.ninja.gymassistant.R;
 import org.ninja.gymassistant.dto.SignInRequest;
 import org.ninja.gymassistant.dto.SignInResponse;
-import org.ninja.gymassistant.R;
-import org.ninja.gymassistant.activity.MainActivity_;
-import org.ninja.gymassistant.activity.SignUpActivity_;
 import org.ninja.gymassistant.http.PublicApiService;
 import org.ninja.gymassistant.http.RetrofitClientInstance;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

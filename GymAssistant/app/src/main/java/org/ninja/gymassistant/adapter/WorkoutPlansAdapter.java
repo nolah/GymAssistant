@@ -5,12 +5,11 @@ import android.view.ViewGroup;
 
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
-
-import java.util.List;
-
 import org.ninja.gymassistant.dto.WorkoutPlansResponse;
 import org.ninja.gymassistant.view.WorkoutPlanView;
 import org.ninja.gymassistant.view.WorkoutPlanView_;
+
+import java.util.List;
 
 @EBean
 public class WorkoutPlansAdapter

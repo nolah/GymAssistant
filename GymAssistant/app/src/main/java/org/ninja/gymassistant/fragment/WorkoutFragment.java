@@ -9,16 +9,16 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-
-import java.util.List;
-
-import org.ninja.gymassistant.dto.WorkoutsResponse;
-import org.ninja.gymassistant.dto.WorkoutsResponseWorkouts;
 import org.ninja.gymassistant.R;
 import org.ninja.gymassistant.activity.BaseActivity;
 import org.ninja.gymassistant.activity.GraphActivity_;
 import org.ninja.gymassistant.adapter.WorkoutsAdapter;
+import org.ninja.gymassistant.dto.WorkoutsResponse;
+import org.ninja.gymassistant.dto.WorkoutsResponseWorkouts;
 import org.ninja.gymassistant.http.SecuredApiService;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

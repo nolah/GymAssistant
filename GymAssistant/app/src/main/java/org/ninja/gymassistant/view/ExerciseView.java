@@ -10,17 +10,12 @@ import android.widget.TextView;
 
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
+import org.ninja.gymassistant.R;
+import org.ninja.gymassistant.dto.WorkoutsResponseWorkoutsExercises;
 
 import java.math.BigDecimal;
 import java.util.function.Consumer;
 
-import org.ninja.gymassistant.dto.WorkoutsResponseWorkoutsExercises;
-import org.ninja.gymassistant.R;
-
-
-/**
- * Created by Alex on 5/20/17.
- */
 
 @EViewGroup(R.layout.item_view_exercise)
 public class ExerciseView extends RelativeLayout {

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import org.ninja.gymassistant.activity.SignInActivity_;
 import org.ninja.gymassistant.http.PublicApiService;
 import org.ninja.gymassistant.http.RetrofitClientInstance;
 import org.ninja.gymassistant.http.SecuredApiService;

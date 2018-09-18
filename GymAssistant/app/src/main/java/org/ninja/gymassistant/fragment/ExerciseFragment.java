@@ -4,25 +4,24 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.ninja.gymassistant.dto.UpdateWorkoutRequest;
-import org.ninja.gymassistant.dto.UpdateWorkoutRequestExercises;
-import org.ninja.gymassistant.dto.WorkoutsResponseWorkouts;
 import org.ninja.gymassistant.R;
 import org.ninja.gymassistant.activity.BaseActivity;
 import org.ninja.gymassistant.activity.MainActivity_;
 import org.ninja.gymassistant.adapter.ExerciseAdapter;
+import org.ninja.gymassistant.dto.UpdateWorkoutRequest;
+import org.ninja.gymassistant.dto.UpdateWorkoutRequestExercises;
+import org.ninja.gymassistant.dto.WorkoutsResponseWorkouts;
 import org.ninja.gymassistant.http.SecuredApiService;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

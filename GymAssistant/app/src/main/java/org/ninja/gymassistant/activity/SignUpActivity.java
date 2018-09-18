@@ -7,12 +7,11 @@ import android.widget.EditText;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
-import org.ninja.gymassistant.dto.SignUpRequest;
 import org.ninja.gymassistant.R;
-import org.ninja.gymassistant.activity.SignInActivity_;
+import org.ninja.gymassistant.dto.SignUpRequest;
 import org.ninja.gymassistant.http.PublicApiService;
 import org.ninja.gymassistant.http.RetrofitClientInstance;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

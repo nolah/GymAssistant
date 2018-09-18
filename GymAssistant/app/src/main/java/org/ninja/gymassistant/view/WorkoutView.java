@@ -8,10 +8,9 @@ import android.widget.TextView;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
-
+import org.ninja.gymassistant.R;
 import org.ninja.gymassistant.dto.WorkoutsResponseWorkouts;
 import org.ninja.gymassistant.fragment.WorkoutFragment;
-import org.ninja.gymassistant.R;
 
 
 @EViewGroup(R.layout.item_view_workout)

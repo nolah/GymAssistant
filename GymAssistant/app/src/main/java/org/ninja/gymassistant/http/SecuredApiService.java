@@ -1,13 +1,14 @@
 package org.ninja.gymassistant.http;
 
-import java.util.List;
-
 import org.ninja.gymassistant.dto.QuickInfoResponse;
 import org.ninja.gymassistant.dto.StartWorkoutPlanRequest;
 import org.ninja.gymassistant.dto.UpdateWorkoutRequest;
 import org.ninja.gymassistant.dto.WorkoutPlansResponse;
 import org.ninja.gymassistant.dto.WorkoutsResponse;
 import org.ninja.gymassistant.dto.WorkoutsResponseWorkouts;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

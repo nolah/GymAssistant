@@ -3,11 +3,9 @@ package org.ninja.gymassistant.activity;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.FragmentById;
-
+import org.ninja.gymassistant.R;
 import org.ninja.gymassistant.dto.WorkoutsResponseWorkouts;
 import org.ninja.gymassistant.fragment.WorkoutFragment;
-import org.ninja.gymassistant.R;
-import org.ninja.gymassistant.activity.ExerciseActivity_;
 
 @EActivity(R.layout.activity_workouts)
 public class WorkoutsActivity extends BaseActivity implements WorkoutFragment.WorkoutHandler {

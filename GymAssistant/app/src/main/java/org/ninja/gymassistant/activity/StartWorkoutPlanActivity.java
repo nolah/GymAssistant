@@ -9,12 +9,11 @@ import android.widget.EditText;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.ninja.gymassistant.R;
+import org.ninja.gymassistant.dto.StartWorkoutPlanRequest;
 
 import java.math.BigDecimal;
 
-import org.ninja.gymassistant.dto.StartWorkoutPlanRequest;
-import org.ninja.gymassistant.R;
-import org.ninja.gymassistant.activity.MainActivity_;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

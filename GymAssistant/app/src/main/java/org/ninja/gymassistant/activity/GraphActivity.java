@@ -16,6 +16,8 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.ninja.gymassistant.R;
+import org.ninja.gymassistant.dto.WorkoutsResponseWorkouts;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,9 +25,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import org.ninja.gymassistant.dto.WorkoutsResponseWorkouts;
-import org.ninja.gymassistant.R;
 
 @EActivity(R.layout.activity_graph)
 public class GraphActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {

@@ -9,13 +9,9 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
-import org.ninja.gymassistant.dto.QuickInfoResponse;
 import org.ninja.gymassistant.R;
-import org.ninja.gymassistant.activity.ExerciseActivity_;
-import org.ninja.gymassistant.activity.StartWorkoutPlanActivity_;
-import org.ninja.gymassistant.activity.WorkoutPlansActivity_;
-import org.ninja.gymassistant.activity.WorkoutPlansDashboardActivity_;
+import org.ninja.gymassistant.dto.QuickInfoResponse;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

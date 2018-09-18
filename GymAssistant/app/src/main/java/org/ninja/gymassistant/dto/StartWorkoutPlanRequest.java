@@ -4,7 +4,6 @@ package org.ninja.gymassistant.dto;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
-
 import java.math.BigDecimal;
 
 

@@ -4,11 +4,12 @@ import android.content.SharedPreferences;
 
 import com.auth0.android.jwt.JWT;
 
+import org.ninja.gymassistant.dto.RefreshTokenRequest;
+import org.ninja.gymassistant.dto.SignInResponse;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
-import org.ninja.gymassistant.dto.RefreshTokenRequest;
-import org.ninja.gymassistant.dto.SignInResponse;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
