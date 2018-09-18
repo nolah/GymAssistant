@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HelloWorld No!</string>
+    <string name="app_name">gymassistant No!</string>
     <string name="text_view">Hello World With!</string>
     <string name="text_view_land">Hello Landscape!</string>
     <string name="username">Username</string>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HelloWorld</string>
+    <string name="app_name">gymassistant</string>
     <string name="text_view">Zdravo svete!</string>
     <string name="text_view_land">Zdravo iz horizontale!</string>
 </resources>

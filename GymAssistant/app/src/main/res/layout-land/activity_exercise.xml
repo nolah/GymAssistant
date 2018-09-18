@@ -10,9 +10,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="pmf.danijela.helloworld.pmf.danijela.gymassistant.activity.ExerciseActivity">
+    tools:context="org.ninja.gymassistant.activity.ExerciseActivity">
 
-    <fragment android:name="pmf.danijela.helloworld.fragment.ExerciseFragment_"
+    <fragment android:name="org.ninja.gymassistant.fragment.ExerciseFragment_"
         android:id="@+id/exerciseFragment"
         android:layout_weight="2"
         android:layout_width="match_parent"
