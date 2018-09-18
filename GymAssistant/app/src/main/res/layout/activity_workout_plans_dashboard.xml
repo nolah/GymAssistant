@@ -13,14 +13,14 @@
 
     <fragment android:name="org.ninja.gymassistant.fragment.WorkoutPlansFragment_"
         android:id="@+id/workoutPlansFragment"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent" />
 
 
     <fragment android:name="org.ninja.gymassistant.fragment.WorkoutFragment_"
         android:id="@+id/workoutFragment"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent" />
 </LinearLayout>
