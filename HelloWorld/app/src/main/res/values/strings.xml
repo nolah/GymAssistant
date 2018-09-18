@@ -11,6 +11,7 @@
     <string name="go_to_active_workout_plan">Active workout!</string>
     <string name="go_to_todays_workout">Today\'s workout!</string>
     <string name="go_to_workout_plans">Go to workout plans!</string>
+    <string name="go_to_graph">Graph</string>
     <string name="go_to_exercises">Details</string>
     <string name="go_to_workouts">Details</string>
     <string name="max_squat">Max squat</string>
@@ -24,4 +25,6 @@
     <string name="set3_reps">Set 3 reps</string>
     <string name="set3_weight">Set 3 weight</string>
     <string name="update_workout">Save</string>
+    <string name="confirm">Confirm</string>
+    <string name="start_workout_plan_confirmation_message">%1$s is already active, do you want to activate new workout plan?</string>
 </resources>

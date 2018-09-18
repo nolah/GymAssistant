@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_sign_up"
@@ -10,36 +10,36 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="pmf.danijela.helloworld.activity.SignInActivity">
+    tools:context="pmf.danijela.helloworld.pmf.danijela.gymassistant.activity.MainActivity">
 
-
-    <Button
-        android:id="@+id/startWorkoutPlan"
-        style="@style/Widget.AppCompat.Button.Colored"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/start_workout_plan" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/goToActiveWorkoutPlan"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/go_to_active_workout_plan"
-        android:visibility="invisible"/>
+        <Button
+            android:id="@+id/goToTodaysWorkout"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/go_to_todays_workout"
+            android:visibility="invisible"/>
 
-    <Button
-        android:id="@+id/goToTodaysWorkout"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/go_to_todays_workout"
-        android:visibility="invisible"/>
+        <Button
+            android:id="@+id/goToWorkoutPlans"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/go_to_workout_plans"/>
 
-    <Button
-        android:id="@+id/goToWorkoutPlans"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/go_to_workout_plans"/>
-</LinearLayout>
+        <Button
+            android:id="@+id/startWorkoutPlan"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_workout_plan" />
+
+    </LinearLayout>
+</RelativeLayout>

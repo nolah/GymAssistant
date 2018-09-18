@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity_">
+        <activity android:name=".activity.SignInActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,11 +20,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.SignUpActivity_" />
-        <activity android:name=".activity.SignInActivity_" />
+        <activity android:name=".activity.MainActivity_" />
         <activity android:name=".activity.StartWorkoutPlanActivity_" />
         <activity android:name=".activity.WorkoutPlansActivity_" />
         <activity android:name=".activity.WorkoutsActivity_" />
         <activity android:name=".activity.ExerciseActivity_" />
+        <activity android:name=".activity.GraphActivity_" />
+        <activity android:name=".activity.WorkoutPlansDashboardActivity_" />
+        <activity android:name=".activity.ExerciseDashboardActivity_" />
     </application>
 
 </manifest>

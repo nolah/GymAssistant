@@ -10,11 +10,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="pmf.danijela.helloworld.pmf.danijela.gymassistant.activity.WorkoutsActivity">
+    tools:context="pmf.danijela.helloworld.pmf.danijela.gymassistant.activity.SignInActivity">
 
-    <fragment android:name="pmf.danijela.helloworld.fragment.WorkoutFragment_"
-        android:id="@+id/workoutFragment"
-        android:layout_weight="2"
+
+    <Spinner
+        android:id="@+id/exerciseSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="200dip"
+        android:id="@+id/graph" />
 </LinearLayout>
